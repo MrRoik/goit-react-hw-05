@@ -8,14 +8,14 @@ import { PageTitle } from '../components/PageTitle/PageTitle';
 import { SearchMovie } from '../components/SearchMovie/SearchMovie';
 import { useSearchParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
+import { ErrorMessage, MessageNotFound } from '../components/ErrorMessage/ErrorMessage';
 
 export default function MoviesPage() {
   const [searchMovies, setSearchMovies] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [params, setParams] = useSearchParams();
-  //const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const titleMovie = params.get('query') ?? '';
   const handleSearch = async newQuery => {
@@ -24,6 +24,7 @@ export default function MoviesPage() {
     }
     setSearchMovies([]);
     setParams({ query: newQuery });
+    setIsEmpty(false);
   };
 
   useEffect(() => {
@@ -32,10 +33,10 @@ export default function MoviesPage() {
         setLoading(true);
         const result = await getMovies(titleMovie);
         setSearchMovies(prevMov => [...prevMov, ...result.results]);
-        /*if (result.results.length === 0) {
-          setIsEmpty(false);
+        if (result.results.length === 0) {
+          setIsEmpty(true);
           return;
-        }*/
+        }
       } catch (error) {
         if (error.code !== 'ERR_CANCELED') {
           setError(true);
@@ -54,9 +55,8 @@ export default function MoviesPage() {
       <SearchMovie value={titleMovie} onSearch={handleSearch} />
       {loading && <Loader />}
       {searchMovies.length > 0 && <MovieList movies={searchMovies} />}
+      {isEmpty && <MessageNotFound />}
       <Toaster position="bottom-center" />
     </div>
   );
 }
-
-//{isEmpty && <MessageNotFound />}
