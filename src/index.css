@@ -4,7 +4,7 @@
     font-weight: 400;
   
       --primary-black-color: #1b1b1b;
-      --primary-grey-color: #5e5e61;
+      --primary-grey-color: #3e3e3f;
       --primary-white-color: #FFF;
       --primary-blue-color: #404bbf;
       --primary-light-grey-color: #ebebf1;
@@ -13,7 +13,7 @@
   
   a {
     text-decoration: none;
-    color: var(--primary-black-color);
+    color: var(--primary-prelight-grey-color);
   }
   a:hover {
     color: var(--primary-blue-color);
@@ -21,7 +21,7 @@
   
   body {
     font-family: var(--primary-font);
-    color: var(--primary-black-color);
+    color: var(--primary-white-color);
     background: var(--primary-grey-color);
     display: flex;
     justify-content: center;
@@ -64,16 +64,3 @@
     header {
       background: teal;
     }
-  
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: var(--primary-white-color);
-    }
-    body {
-      background: var(--primary-white-color);
-    }
-    a:hover {
-      color: var(--primary-blue-color);
-    }
-  }
