@@ -6,7 +6,7 @@
 }
 
 .inputSearch {
-    width: 285px;
+    max-width: 285px;
     height: 20px;
     border-radius: 5px;
     padding: 5px;

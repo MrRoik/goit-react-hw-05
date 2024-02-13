@@ -4,12 +4,6 @@ import { Suspense, lazy } from 'react';
 import { NavBar } from './NavBar/NavBar';
 import css from './App.module.css';
 import { LoaderPage } from './Loader';
-//import MoviesPage from '../pages/MoviesPage';
-//import HomePage from '../pages/HomePage';
-//import NotFoundPage from '../pages/NotFoundPage';
-//import MoviesDetailsPage from '../pages/MoviesDetailsPage';
-//import { Cast } from './Cast/Cast';
-//import { Reviews } from './Reviews/Reviews';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const MoviesPage = lazy(() => import('../pages/MoviesPage'));
@@ -20,7 +14,7 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
-    <>
+    <div className={css.container}>
       <header className={css.header}>
         <NavBar />
       </header>
@@ -35,6 +29,6 @@ export const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </>
+    </div>
   );
 };
