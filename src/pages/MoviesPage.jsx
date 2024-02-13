@@ -28,6 +28,7 @@ export default function MoviesPage() {
   };
 
   useEffect(() => {
+    if (!titleMovie) return;
     async function searchMovie() {
       try {
         setLoading(true);

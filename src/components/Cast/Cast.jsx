@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getCast } from '../../api';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { Loader } from '../Loader';
 import { useParams } from 'react-router-dom';
 import css from './Cast.module.css';
+import { getCast } from '../../api';
 
 export default function Cast() {
   const [castMovie, setCastMovie] = useState([]);
