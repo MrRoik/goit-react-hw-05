@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getMoviesById } from '../api';
 import { MovieDetails } from '../components/MovieDetails/MovieDetails';
 import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
-import { BackLink } from '../components/backLink/backLink';
+import { BackLink } from '../components/BackLink/BackLink';
 
 export default function MoviesDetailsPage() {
   const { movieId } = useParams();
