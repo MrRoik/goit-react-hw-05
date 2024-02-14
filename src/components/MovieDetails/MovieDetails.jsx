@@ -3,12 +3,15 @@ import css from './MovieDetails.module.css';
 import clsx from 'clsx';
 import { Suspense } from 'react';
 import { LoaderPage } from '../Loader';
+import { format } from 'date-fns';
 
 const linkClass = ({ isActive }) => {
   return clsx(css.block_title, isActive && css.active);
 };
 
 export const MovieDetails = ({ movie }) => {
+  const year = format(new Date(movie.release_date), 'yyyy');
+
   const defaultImg =
     'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
   return (
@@ -23,7 +26,7 @@ export const MovieDetails = ({ movie }) => {
         />
         <div className={css.card_movie_desc}>
           <h2>
-            {movie.original_title} ({movie.release_date})
+            {movie.original_title} ({year})
           </h2>
           <h4>Vote average: {movie.vote_average}</h4>
           <div>
