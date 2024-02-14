@@ -33,7 +33,7 @@ export default function MoviesPage() {
       try {
         setLoading(true);
         const result = await getMovies(titleMovie);
-        setSearchMovies(prevMov => [...prevMov, ...result.results]);
+        setSearchMovies(result.results);
         if (result.results.length === 0) {
           setIsEmpty(true);
           return;

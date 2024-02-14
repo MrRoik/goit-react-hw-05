@@ -11,6 +11,9 @@ export default function Cast() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const defaultImg =
+    'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
+
   useEffect(() => {
     async function fethCast() {
       try {
@@ -33,7 +36,14 @@ export default function Cast() {
         <ul className={css.list_cast}>
           {castMovie.map(item => (
             <li key={item.id} className={css.list_item_cast}>
-              <img src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt={item.name} />
+              <img
+                src={
+                  item.profile_path
+                    ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                    : defaultImg
+                }
+                alt={item.name}
+              />
               <h3>{item.name}</h3>
               <p>Character: {item.character}</p>
             </li>
