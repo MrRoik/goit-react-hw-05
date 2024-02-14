@@ -28,11 +28,19 @@ export default function MoviesPage() {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+
+    if (titleMovie === '') {
+      return;
+    }
+
     if (!titleMovie) return;
     async function searchMovie() {
       try {
         setLoading(true);
-        const result = await getMovies(titleMovie);
+        const result = await getMovies(titleMovie, {
+          abortController: controller,
+        });
         setSearchMovies(result.results);
         if (result.results.length === 0) {
           setIsEmpty(true);
@@ -47,6 +55,10 @@ export default function MoviesPage() {
       }
     }
     searchMovie();
+
+    return () => {
+      controller.abort();
+    };
   }, [titleMovie]);
 
   return (

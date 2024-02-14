@@ -13,15 +13,23 @@ export default function MoviesDetailsPage() {
   const backLinkRef = useRef(location.state);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function fetchData() {
       try {
-        const fetchedMovie = await getMoviesById(movieId);
+        const fetchedMovie = await getMoviesById(movieId, {
+          abortController: controller,
+        });
         setMovie(fetchedMovie);
       } catch (error) {
         setError(true);
       }
     }
     fetchData();
+
+    return () => {
+      controller.abort();
+    };
   }, [movieId]);
   return (
     <div>
